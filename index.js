@@ -42,16 +42,12 @@ function get(password) {
 
 function put(password) {
 
-  var itemPassword = prompt('Value:')
+  var itemPassword = prompt('Value: ')
 
-  process.stdin.setRawMode(false)
   var values = {}
 
-  process.stdout.write('\n')
-
   config.columns.forEach(function(col) {
-    process.stdout.write(col + ':')
-    values[col] = prompt()
+    values[col] = prompt(col + ': ')
   })
 
   values.encryptedValue = encrypt(itemPassword, password)
@@ -96,9 +92,7 @@ var tries = 0
 
   if (tries++ == 3) return
 
-  process.stdin.setRawMode(true)
-
-  var password = prompt('Password:')
+  var password = prompt('Password: ', { noEchoBack: true })
 
   try {
     var loc = path.join(config.syncdir, filename)
