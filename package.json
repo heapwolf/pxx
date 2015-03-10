@@ -1,0 +1,22 @@
+{
+  "name": "pxx",
+  "version": "1.0.1",
+  "description": "store encrypted values in a json file.",
+  "bin": "./index.js",
+  "preferGlobal": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "hij1nx",
+  "keywords": [
+    "passwords",
+    "password"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "cli-table": "^0.3.1",
+    "minimist": "^1.1.0",
+    "prompt-sync": "^1.0.0",
+    "rc": "^0.6.0"
+  }
+}
