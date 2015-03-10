@@ -16,7 +16,7 @@
   "dependencies": {
     "cli-table": "^0.3.1",
     "minimist": "^1.1.0",
-    "prompt-sync": "^1.0.0",
-    "rc": "^0.6.0"
+    "rc": "^0.6.0",
+    "readline-sync": "~0.7.5"
   }
 }

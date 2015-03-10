@@ -3,7 +3,8 @@ var rc = require('rc')
 var crypto = require('crypto')
 var fs = require('fs')
 var path = require('path')
-var prompt = require('prompt-sync')
+var readlineSync = require('readline-sync')
+var prompt = readlineSync.question.bind(readlineSync)
 var Table = require('cli-table')
 
 var config = {
@@ -41,8 +42,7 @@ function get(password) {
 
 function put(password) {
 
-  process.stdout.write('\nValue:')
-  var itemPassword = prompt('\u000D')
+  var itemPassword = prompt('Value:')
 
   process.stdin.setRawMode(false)
   var values = {}
@@ -97,9 +97,8 @@ var tries = 0
   if (tries++ == 3) return
 
   process.stdin.setRawMode(true)
-  process.stdout.write('\nPassword:')
 
-  var password = prompt('\u000D')
+  var password = prompt('Password:')
 
   try {
     var loc = path.join(config.syncdir, filename)
