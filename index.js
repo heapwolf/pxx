@@ -42,12 +42,12 @@ function get(password) {
 
 function put(password) {
 
-  var itemPassword = prompt('Value: ')
+  var itemPassword = prompt('Value: ', { noEchoBack: true })
 
   var values = {}
 
   config.columns.forEach(function(col) {
-    values[col] = prompt(col + ': ')
+    values[col] = prompt(col + ': ', {})
   })
 
   values.encryptedValue = encrypt(itemPassword, password)
