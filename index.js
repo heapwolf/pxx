@@ -3,6 +3,7 @@ var rc = require('rc')
 var crypto = require('crypto')
 var fs = require('fs')
 var path = require('path')
+var spawnSync = require('child_process').spawnSync
 var readlineSync = require('readline-sync')
 var prompt = readlineSync.question.bind(readlineSync)
 var Table = require('cli-table')
@@ -34,10 +35,10 @@ function decrypt(encrypedValue, password) {
 }
 
 function get(password) {
-
   var key = config._[0]
   var value = library[key]
-  console.log(decrypt(value.encryptedValue, password))
+  var data = decrypt(value.encryptedValue, password)
+  spawnSync('pbcopy', { input: data }); 
 }
 
 function put(password) {
@@ -62,17 +63,16 @@ function ls() {
   var table = new Table({
     head: config.columns
   })
-
+  
   Object.keys(library).forEach(function(key) {
 
     var values = []
-    for(var k in library[key]) {
+    for (var k in library[key]) {
       if (k == 'encryptedValue') continue
       values.push(library[key][k])
     }
     table.push(values)
   })
-
   console.log(table.toString())
 }
 
