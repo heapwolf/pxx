@@ -43,7 +43,13 @@ function get(password) {
 
 function put(password) {
 
-  var itemPassword = prompt('Value: ', { noEchoBack: true })
+  var encval
+
+  if (!config.in) {
+    encval = prompt('Value: ', { noEchoBack: true })
+  } else {
+    encval = fs.readFileSync(config.in, 'utf8')
+  }
 
   var values = {}
 
@@ -51,7 +57,7 @@ function put(password) {
     values[col] = prompt(col + ': ', {})
   })
 
-  values.encryptedValue = encrypt(itemPassword, password)
+  values.encryptedValue = encrypt(encval, password)
 
   var key = values[config.columns[0]]
   library[key] = values
